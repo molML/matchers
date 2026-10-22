@@ -36,9 +36,14 @@ MATCHERS itself only returns NumPy arrays and needs neither.
 | `OneHotMATCHERS` | One-hot vector over the supported elements |
 | `PeriodicTableMATCHERS` | Min-max scaled periodic-table features (mass, van der Waals volume, electronegativity) |
 
-**Supported chemistry:** C, H, O, N, S, P, F, Cl, Br, I (including aromatic c, n, o, s); at most 50 rings.
+**Supported chemistry:** 
+
+C, H, O, N, S, P, F, Cl, Br, I (including aromatic c, n, o, s); at most 50 rings.
+
 SMILES strings need to be canonicalized before with RDKit.
+
 Not supported: isotopes / atomic masses in brackets, uncharged single-atom metals.
+
 Stereochemistry is **not** encoded.
 
 ## Usage
