@@ -7,10 +7,9 @@ Each molecule (given as SMILES) is turned into a matrix with one row per atom:
   explicit hydrogens and the formal charge.
 - **Connectivity block:** one column per subgraph of the molecule (closed cyclic, open cyclis, and acyclic paths). Each entry
   holds the bond order between the atoms of that subgraph.
-- **Two flag rows** at the bottom mark each subgraph column as a ring (`is ring`) or an acyclic path (`is path`).
+- **Two flag rows** at the bottom mark each subgraph column as a closed cyclic path (`is ring`) or an acyclic path (`is path`). These can be eliminated and later readded.
 
-The encoding can be decoded back to SMILES, which makes it usable for both property prediction and
-de novo molecule generation.
+The encoding can be decoded back to SMILES, which makes it usable for both unsupervised analysis, property prediction and de novo molecule generation.
 
 ## Environment
 
@@ -33,6 +32,7 @@ MATCHERS itself only returns NumPy arrays and needs neither.
 ## Representations
 
 | Class | Atom encoding |
+| --- | --- |
 | `OneHotMATCHERS` | One-hot vector over the supported elements |
 | `PeriodicTableMATCHERS` | Min-max scaled periodic-table features (mass, van der Waals volume, electronegativity) |
 
