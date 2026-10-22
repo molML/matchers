@@ -38,13 +38,13 @@ MATCHERS itself only returns NumPy arrays and needs neither.
 
 **Supported chemistry:** 
 
-C, H, O, N, S, P, F, Cl, Br, I (including aromatic c, n, o, s); at most 50 rings.
+- C, H, O, N, S, P, F, Cl, Br, I (including aromatic c, n, o, s); at most 50 rings.
 
-SMILES strings need to be canonicalized before with RDKit.
+- SMILES strings need to be canonicalized before with RDKit.
 
-Not supported: isotopes / atomic masses in brackets, uncharged single-atom metals.
+- Not supported: isotopes / atomic masses in brackets, uncharged single-atom metals.
 
-Stereochemistry is **not** encoded.
+- Stereochemistry is **not** encoded.
 
 ## Usage
 
