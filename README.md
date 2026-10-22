@@ -54,9 +54,11 @@ MATCHERS itself only returns NumPy arrays and needs neither.
 from matchers.matchers.matchers import OneHotMATCHERS
 
 encoder = OneHotMATCHERS("CC(=O)Oc1ccccc1C(=O)O", bond_mode="categorical")
-matrix = encoder.matchers                 # numpy array: (n_atoms + 2, atom features + subgraphs)
+matrix = encoder.matchers                 # numpy array: (n_atoms + 2 [flags] x atom features + subgraphs)
 smiles = encoder.to_smiles(matrix)        # canonical SMILES, without stereochemistry
 ```
+
+If SMILES **not** canonicalized, then the SMILES string before and after encoding might not be the same in order.
 
 `bond_mode`:
 - `"categorical"`: bonds encoded as 1 = single, 2 = aromatic, 3 = double, 4 = triple. **Required for decoding.**
@@ -66,18 +68,16 @@ smiles = encoder.to_smiles(matrix)        # canonical SMILES, without stereochem
 
 The vectorizer brings all molecules to the same shape, so they can be used as model input:
 
-1. `fit()` determines the maximum number of closed cyclic paths ('closed chains'), open cyclic paths ('open chains'), and acyclic paths ('paths') in the corpus
-   (stored in `max_flags.json`) and saves the atom vocabulary (`segment2vec.json`).
-2. `vectorize_chemicals()` sorts each molecule's subgraph columns into these three blocks and pads every block
-   to its maximum. It drops the two flag rows and pads the rows (atoms) to `maxlen` with the padding value
-   (`-999`). Padding value can be changed, depending on the task.
-3. If performing de novo design, adding a start and end character is necessar
+1. `fit()` determines the maximum number of closed cyclic paths ('closed chains'), open cyclic paths ('open chains'), and acyclic paths ('paths') in the corpus (stored in `max_flags.json`) and saves the atom vocabulary (`segment2vec.json`).
+2. `vectorize_chemicals()` sorts each molecule's subgraph columns into these three blocks and pads every block to its maximum. It drops the two flag rows and pads the rows (atoms) 
+to `maxlen` with the padding value (`-999`). Padding value can be changed, depending on the task.
+3. If performing de novo design, adding a start and end character is necessary.
 
 ```python
 from matchers.vectorizer.matchers_vectorizers import OneHotMatchersVectorizer
 
 vectorizer = OneHotMatchersVectorizer(
-    maxlen=100,                  # max. number of atoms (+2 if add_start_end=True)
+    maxlen=100,                  # max. number of atoms (+ 2 if add_start_end=True)
     bond_mode="categorical",
     add_start_end=False,         # True: adds START/END rows for autoregressive generation
     saving_dir="output/",        # max_flags.json and segment2vec.json are written here
