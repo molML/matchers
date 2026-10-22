@@ -1,0 +1,4 @@
+*__pycache__*
+clean.smiles
+.DS_Store
+__pycache__/
