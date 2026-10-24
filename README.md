@@ -11,8 +11,6 @@ Each molecule (given as SMILES) is turned into a matrix with one row per atom:
 
 The encoding can be decoded back to SMILES, which makes it usable for both unsupervised analysis, property prediction and de novo molecule generation.
 
-![Overview of the MATCHERS pipeline](figures/ShortMATCHERS.png)
-
 ## Environment
 
 python (v.3.9.7), networkx (v.3.1), rdkit (v.2022.03.1), regex (v.2025.9.1), pandas (v.2.0.0), numpy (v.1.21.3)
@@ -20,8 +18,7 @@ python (v.3.9.7), networkx (v.3.1), rdkit (v.2022.03.1), regex (v.2025.9.1), pan
 ## Installation
 
 ```bash
-git clone <repository-url>
-cd <repository-folder>
+git clone https://github.com/molML/matchers
 conda create -n matchers python=3.9.7
 conda activate matchers
 conda install -c conda-forge rdkit=2022.03.1
@@ -160,7 +157,6 @@ Run it from the folder **above** the package (otherwise `import matchers` resolv
 `matchers/matchers/` folder):
 
 ```bash
-cd <folder containing matchers/>
 python -m matchers.test_roundtrip
 ```
 

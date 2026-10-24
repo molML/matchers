@@ -158,8 +158,8 @@ def main():
     smiles_path = os.path.join(base_dir, "clean.smiles")
 
     # Some variables to change for testing purposes (e.g. to limit the number of molecules in the sample)
-    limit = 600000
-    representation = "periodic"  # possible: "onehot", "periodic", "both"
+    limit = 60000
+    representation = "onehot"  # possible: "onehot", "periodic", "both"
     seed = 65
     batch_size = 5
     tests = [1, 2, 3]               # possible: 1, 2, 3
